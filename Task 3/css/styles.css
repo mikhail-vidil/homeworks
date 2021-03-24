@@ -1,0 +1,12 @@
+table {
+    border-collapse: collapse;
+}
+table th:nth-child(1) {
+    width: 110px;
+}
+table th:nth-child(2) {
+    width: 270px;
+}
+table th:nth-child(3) {
+    width: 565px;
+}

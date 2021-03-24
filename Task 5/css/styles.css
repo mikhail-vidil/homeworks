@@ -1,0 +1,85 @@
+.btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
+
+.btn.active {
+    background-color: #666;
+    color: white;
+}
+
+.galery-wrap {
+    background-color: gray;
+    width: 64.5vw;
+    height: 94vh;
+    margin: 0 auto;
+}
+
+.galery-wrap-column {
+    width: 64.5vw;
+    height: 327vh;
+}
+
+figure {
+    width: 200px;
+    margin: 10px 10px 10px 10px;
+}
+
+.row {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.column {
+    display: block;
+    background: orange;
+}
+
+figcaption {
+    font: 1.1em 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
+    margin: 10px 0 0 0;
+}
+
+.column-figcaption {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.column-figure {
+    width: 270px;
+    margin-top: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.pagination {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+}
+
+.pagination li {
+    margin-right: 5px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.pagination li:first-child {
+    margin-left: 10px;
+}
+
+.pagination li:hover, .pagination li.active {
+    cursor: pointer;
+    color: red;
+    border: 1px solid red;
+}

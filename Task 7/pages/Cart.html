@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task 7</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link href="../fonts/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> 
+    </head>
+    <body>
+        <header class="background" style="background-image: url(../images/background.jpg);">
+            <div class="container">
+                <div class="site-heading">
+                    <h1>Houseplant Shop</h1>
+                </div>
+            </div> 
+          </header>
+          
+          <div class="bag">
+              <div id="shop-cart">
+
+
+            
+            </div>
+            
+          </div>
+          <br>
+          <a class="btn cart btn-shop-position" href="../Task7.html">Continue Shopping</a>
+          
+                     
+          <footer>
+            <div class="footer-container">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#">
+                          <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                      </li>
+                      <li class="list-inline-item">
+                          <a href="#">
+                              <span class="fa-stack fa-lg">
+                                  <i class="fas fa-circle fa-stack-2x"></i>
+                                  <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
+                              </span>
+                          </a>
+                      </li>
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 All rigths reserved.</p>
+            </div>
+        </footer>
+        <script>
+            let item = localStorage.getItem('goods');
+            let freq = localStorage.getItem('goodsFrequency');
+            let obj = JSON.parse(item);
+            let goodsFrequency = JSON.parse(freq);
+            
+            obj.goodsFrequency = goodsFrequency;
+        
+            let html = "<table border='1|1'>";
+                html += "<thead>";
+                html += "<tr>";
+                html += "<th>" + "Product" + "</th>";
+                html += "<th>" + "Name" + "</th>";
+                html += "<th>" + "Description" + "</th>";
+                html += "<th>" + "Quantity" + "</th>";
+                html += "<th>" + "Price" + "</th>";
+                html += "</tr>";
+                html += "</thead>"
+                
+                let total = 0;
+                for (let i = 0; i < obj.length; i++) {
+                    
+                    html += "<tr>";
+                    html += "<td>" + `<img src="${obj[i].img}" width="150px" height="auto">` + "</td>";
+                    html += "<td>" + obj[i].name + "</td>";
+                    html += "<td>" + obj[i].desc + "</td>";
+                    html += "<td>" + obj["goodsFrequency"][obj[i].name] + "</td>";
+                    html += "<td>" + "$" + parseInt(obj[i].price.slice(1)) * obj["goodsFrequency"][obj[i].name] + "</td>";
+                    html += "</tr>";
+                    total += parseInt(obj[i].price.slice(1)) * obj["goodsFrequency"][obj[i].name];
+                }
+                html += "<tfoot>";
+                html += "<tr>";
+                html += "<td colspan = '4'>" + "Subtotal:" + "</td>";
+                html += "<td>" + "$" + total + "</td>";
+                html += "</tr>";
+                html += "</tfoot>";
+                html += "</table>";
+                document.getElementById("shop-cart").innerHTML = html;
+            
+        </script>
+    </body>
+</html>

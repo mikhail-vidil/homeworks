@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task 6</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        
+    </head>
+    <body>
+        <button class="btn">Add new plant</button>
+        <div class="add-new-product">
+            <div class="content">
+                <span class="close-button">&times;</span>
+                <h1>Add new item on product grid</h1>
+                <table>
+
+                    <tr>
+                        <td>Product image:</td>
+                        <td>
+                            <input type="file" id="input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Product name:</td>
+                        <td><input type="text" id="name"></td>
+                    </tr>
+                    <tr>
+                        <td>Product description:</td>
+                        <td><input type="text" id="desc"></td>
+                    </tr>
+                    <tr>
+                      <td>Product price:</td>
+                      <td><input type="text" id="price"></td>
+                    </tr>
+                    <tr>
+                      <td>Planter colors:</td>
+                      <td><input type="file" id="color" multiple></td>
+                    </tr>
+
+                </table>
+                <button class="btn btn-add">Add</button>
+                <button class="btn btn-cancel">Cancel</button>
+                
+            </div>
+        </div>
+        <div id="p-flex">
+            <div class="p-flex"><div class="p-flex-in">
+              <img class="p-img" src="images/Aloe-Vera5_1.jpg"/>
+              <div class="p-name">Aloe Vera</div>
+              <div class="p-desc">In Mini Dolores Planter</div>
+              <div class="p-price">$28</div>
+              <div class="product-options">
+                  <ul>
+                      <li class="product-options-swatch-wrap">
+                          <img src="images/swatch-blush.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-black.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-pale-grey.png" class="product-options-swatch">
+                      </li>
+                  </ul>
+              </div>
+            </div></div>
+            <div class="p-flex"><div class="p-flex-in">
+              <img class="p-img" src="images/Pilea Peperomioides1_5.jpg"/>
+              <div class="p-name">Pilea Peperomioides</div>
+              <div class="p-desc">In Mini Hyde Planter</div>
+              <div class="p-price">$29</div>
+              <div class="product-options">
+                  <ul>
+                      <li class="product-options-swatch-wrap">
+                          <img src="images/swatch-black.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-blush.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-pale-grey.png" class="product-options-swatch">
+                      </li>
+                  </ul>
+              </div>
+            </div></div>
+            <div class="p-flex"><div class="p-flex-in">
+              <img class="p-img" src="images/Snake Plant Laurentii1_1.jpg"/>
+              <div class="p-name">Snake Plant Laurentii</div>
+              <div class="p-desc">In August Planter</div>
+              <div class="p-price">$37</div>
+              <div class="product-options">
+                  <ul>
+                      <li class="product-options-swatch-wrap">
+                          <img src="images/swatch-cream.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-blush.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-black.png" class="product-options-swatch">
+                      </li>
+                  </ul>
+              </div>
+            </div></div>
+            <div class="p-flex"><div class="p-flex-in">
+              <img class="p-img" src="images/Philodendron Green1_1.jpg"/>
+              <div class="p-name">Philodendron Green</div>
+              <div class="p-desc">In Olmsted Planter</div>
+              <div class="p-price">$35</div>
+              <div class="product-options">
+                  <ul>
+                      <li class="product-options-swatch-wrap">
+                          <img src="images/swatch-blush.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-black.png" class="product-options-swatch">
+                      </li>
+                      <li class="product-options-swatch-wrap">
+                        <img src="images/swatch-cream.png" class="product-options-swatch">
+                      </li>
+                  </ul>
+              </div>
+            </div></div>
+          </div>
+
+          <script>
+            let popUp = document.querySelector(".add-new-product");
+            let btn = document.querySelector(".btn");
+            let closeBtn = document.querySelector(".close-button");
+            let cancelBtn = document.querySelector(".btn-cancel");
+            let addBtn = document.querySelector(".btn-add");
+            let newFlex = document.getElementById("p-flex");
+            
+            let images = document.getElementsByTagName('img.p-img');
+
+            function togglePopUp() {
+                popUp.classList.toggle("show-pop-up");
+            }
+
+            function windowOnClick(e) {
+                if (e.target === popUp) {
+                    togglePopUp();
+                }
+            }
+
+            isActive();
+
+            function addNewProduct() {
+                
+              let pFlex = newFlex.insertAdjacentHTML('beforeend', '<div class = "p-flex"></div>');
+              pFlex = newFlex.lastChild;
+              let pFlexIn = pFlex.insertAdjacentHTML('beforeend', '<div class = "p-flex-in"></div>');
+              pFlexIn = document.querySelectorAll('.p-flex-in');
+                
+              let file = document.getElementById('input').files[0];
+              let src = file.name;
+              let img = document.createElement('img');
+              pFlexIn[pFlexIn.length - 1].appendChild(img);
+              img.setAttribute('class', 'p-img');
+              img.setAttribute('src', `images/${src}`);
+                
+              let pName = pFlexIn[pFlexIn.length - 1].insertAdjacentHTML('beforeend', '<div class = "p-name"></div>');
+              pName = document.querySelectorAll('.p-name');
+              let name = document.getElementById('name').value;
+              pName[pName.length - 1].innerText = name;
+
+              let pDesc = pFlexIn[pFlexIn.length - 1].insertAdjacentHTML('beforeend', '<div class = "p-desc"></div>');
+              pDesc = document.querySelectorAll('.p-desc');
+              let desc = document.getElementById('desc').value;
+              pDesc[pDesc.length - 1].innerText = desc;
+
+              let pPrice = pFlexIn[pFlexIn.length - 1].insertAdjacentHTML('beforeend', '<div class = "p-price"></div>');
+              pPrice = document.querySelectorAll('.p-price');
+              let price = document.getElementById('price').value;
+              pPrice[pDesc.length - 1].innerText = price;
+              
+              let fileInput = document.getElementById("color");
+              let files = fileInput.files;
+       
+              let pOpts = pFlexIn[pFlexIn.length - 1].insertAdjacentHTML('beforeend',
+              `<div class="product-options">
+                  <ul>
+                    <li class="product-options-swatch-wrap">
+                          <img src="images/${files[0].name}" class="product-options-swatch">
+                    </li>
+                    <li class="product-options-swatch-wrap">
+                        <img src="images/${files[1].name}" class="product-options-swatch">
+                    </li>
+                    <li class="product-options-swatch-wrap">
+                        <img src="images/${files[2].name}" class="product-options-swatch">
+                    </li>
+                  </ul>
+              </div>`);
+              isActive();
+              togglePopUp();
+            }
+
+            
+            
+            function isActive() {
+
+              let colors = document.getElementsByClassName("product-options-swatch-wrap");
+                for (let i = 0; i < colors.length; i++) {
+                    colors[i].addEventListener("click", function(){
+                    
+                        let active = document.querySelector('.product-options-swatch-wrap.active');
+
+                        if (active) {
+                            active.classList.remove('active');
+                        }
+                        
+                        let p = event.target.closest(".p-flex-in");
+                        colors[i].classList.add('active');
+                        let src = ["images/Aloe-Vera5_1.jpg", "images/Aloe-Vera5_2.jpg", "images/Aloe-Vera5_3.jpg",
+                                    "images/Pilea Peperomioides1_5.jpg", "images/Pilea Peperomioides1_6.jpg",
+                                    "images/Pilea Peperomioides1_7.jpg", "images/Snake Plant Laurentii1_1.jpg",
+                                    "images/Snake Plant Laurentii1_2.jpg", "images/Snake Plant Laurentii1_3.jpg",
+                                    "images/Philodendron Green1_1.jpg", "images/Philodendron Green1_2.jpg",
+                                    "images/Philodendron Green1_3.jpg", "images/Pilea Peperomioides1_5.jpg", "images/Pilea Peperomioides1_6.jpg",
+                                    "images/Pilea Peperomioides1_7.jpg"];
+                        let img = p.getElementsByTagName('img')[0];
+                        
+                        console.log(p);
+                        img.setAttribute('src', src[i]);
+                    });
+                }
+
+            }
+            
+            btn.addEventListener("click", togglePopUp);
+            closeBtn.addEventListener("click", togglePopUp);
+            cancelBtn.addEventListener("click", togglePopUp);
+            addBtn.addEventListener("click", addNewProduct);
+            window.addEventListener("click", windowOnClick);
+
+          </script>
+    </body>
+</html>

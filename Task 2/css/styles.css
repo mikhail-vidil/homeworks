@@ -1,0 +1,35 @@
+p {
+    text-align: justify;
+}
+.container {
+    width: 99vw;
+    height: 80vh;
+    display: flex;
+}
+.content {
+    width: 99vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.text {
+    width: 70.8vw;
+    height: 40vh;
+    display: block;   
+}
+
+textarea {
+    width: 70vw;
+    height: 50vh;
+}
+.menu-label {
+    align-self: flex-start;
+    padding-bottom: 1vh;
+    margin-left: 14.3vw;
+}
+select {
+    align-self: flex-start;
+    margin-left: 14.3vw;
+}

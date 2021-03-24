@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task5</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <button id="grid" class="btn" onclick="showGrid();"><i class="fa fa-th-large"></i> Show grid of items</button>
+        <button id="list" class="btn" onclick="showList();"><i class="fa fa-bars"></i> Show list of items</button> 
+       
+        <script>
+                let imgAttributes = [ "images/airplant3.jpg", "images/Aloe-Vera5_3.jpg", "images/cactus-1.jpg",
+                                      "images/is3.jpg", "images/th4.jpg", "images/the-sill_1.jpg",
+                                      "images/the-sill_2.jpg", "images/gorshok-1.jpg", "images/th4.jpg", "images/the-sill_1.jpg",
+                                      "images/the-sill_2.jpg", "images/gorshok-1.jpg", "images/airplant3.jpg",
+                                      "images/Aloe-Vera5_3.jpg", "images/cactus-1.jpg",
+                                      "images/is3.jpg", "images/Aloe_Copper_Potted_Cactus.jpg", "images/Little_Green_Cactus.jpg",
+                                      "images/Azul_Cactus_Plant.jpg", "images/Indoor_Wood_Planter.jpg",
+                                      "images/Azulito_Cactus.jpg", "images/Pink_Cactus.jpg", "images/Sonora_White.jpg",
+                                      "images/cactus-1.jpg" ];
+                
+                let figcaptionText = ["Air Plant Trio $50", "Aloe Vera $28", "Cactus $15",
+                                      "Potted Orchid $25", "ZZ Plant $15", "Hoya Hearts $32",
+                                      "Philodendron $23", "Empty Pot $10", "ZZ Plant $15", "Hoya Hearts $32",
+                                      "Philodendron $23", "Empty Pot $10", "Air Plant Trio $50", "Aloe Vera $28", "Cactus $15",
+                                      "Potted Orchid $25", "Aloe Potted Cactus $18", "Little green cactus $20",
+                                      "Azul Cactus Plant $22", "Indoor Wood Planter $16", "Azulito Cactus $12", "Pink Cactus $16",
+                                      "Sonora White $17", "Cactus $15"];
+
+            isActiveBtn();
+            
+            function showGrid() {
+                
+                clear();
+                
+                let itemNum = imgAttributes.length;
+                let itemsOnPage = 8;
+                let numPages = Math.ceil(itemNum / itemsOnPage);
+                
+                createItemsOnPage(itemsOnPage);
+                let pagination = document.querySelector(".pagination");
+
+                let pages = [];
+                for (let i = 1; i <= numPages; i++) {
+                    let li = document.createElement('li');
+                    li.innerHTML = i;
+                    pagination.appendChild(li);
+                    pages.push(li);
+                }
+
+                showPage(pages[0]);
+
+                for (let item of pages) {
+                    item.addEventListener('click', function(){
+                        showPage(this);
+                    });
+                }
+                
+                function showPage(item) {
+
+                    let active = document.querySelector('.pagination li.active');
+
+                    if (active) {
+                        active.classList.remove('active');
+                    }
+                        
+                    item.classList.add('active');
+
+                    let pageNum = +item.innerHTML;
+                    let start = (pageNum - 1) * itemsOnPage;
+                    let end = start + itemsOnPage;
+
+                    let figures = imgAttributes.slice(start, end);
+                    let figcaptions = figcaptionText.slice(start, end);
+                    
+                    let image = Array.from(document.getElementsByTagName('img'));
+                    
+                    image.forEach(function(element, index){ 
+                        element.setAttribute('height', "200px");
+                        element.setAttribute('width', "200px");
+                        element.setAttribute('src', figures[index]);
+                    });
+
+                    let figcaption = Array.from(document.getElementsByTagName('figcaption'));
+
+                    figcaption.forEach(function(element, index){
+                        element.classList.remove('column-figcaption');  
+                        element.innerText = figcaptions[index];
+                    });
+                }
+            }
+             
+            function createItemsOnPage(itemsOnPage) {
+
+                let myButton = document.getElementById('list');
+                let newFigure = document.createElement('figure');
+                let newImg = document.createElement('img');
+                let newFigCaption = document.createElement('figcaption');
+                
+                myButton.insertAdjacentHTML('afterend', '<br>' + '<br>' + '<div class = "galery-wrap"></div>');
+
+                let galery = document.getElementsByClassName('galery-wrap')[0];
+
+                for (let i = 0; i < itemsOnPage; i++) {
+                    galery.appendChild(newFigure.cloneNode(true)).appendChild(newImg.cloneNode(true));
+                }
+
+                let figure = Array.from(document.getElementsByTagName('figure'));
+
+                figure.forEach(function(item){
+                    item.classList.add('row');
+	                item.appendChild(newFigCaption.cloneNode(true));
+                });
+
+                galery.insertAdjacentHTML('beforeend', '<ul class="pagination"></ul>');
+            }
+
+            function showList() {
+
+                clear();
+
+                let myButton = document.getElementById('list');
+                let newFigure = document.createElement('figure');
+                let newImg = document.createElement('img');
+                let newFigCaption = document.createElement('figcaption');
+                    
+                myButton.insertAdjacentHTML('afterend', '<br>' + '<br>' + '<div class = "galery-wrap"></div>');
+
+                let galery = document.getElementsByClassName('galery-wrap')[0];
+                galery.classList.add('galery-wrap-column');
+
+                for (let i = 0; i < imgAttributes.length; i++) {
+                    galery.appendChild(newFigure.cloneNode(true)).appendChild(newImg.cloneNode(true));
+                }
+
+                let figure = Array.from(document.getElementsByTagName('figure'))
+                    
+                figure.forEach(function(element, index){
+                    element.classList.remove('row');
+                    element.classList.add('column');
+                    element.classList.add('column-figure');
+                    element.appendChild(newFigCaption.cloneNode(true));
+                });
+
+                let image = Array.from(document.getElementsByTagName('img'));
+                    
+                image.forEach(function(element, index){
+                    element.setAttribute('height', "50px");
+                    element.setAttribute('width', "50px");
+                    element.setAttribute('src', imgAttributes[index]);
+                });
+
+                let figcaption = Array.from(document.getElementsByTagName('figcaption'));
+
+                figcaption.forEach(function(element, index){
+                    element.classList.add('column-figcaption'); 
+                    element.innerText = figcaptionText[index];
+                });
+            }
+
+            function clear() {
+                
+                let check = document.querySelector(".galery-wrap");
+                if (check) {
+                    check.remove();
+                }
+            }
+
+            function isActiveBtn(){
+                let btns = document.getElementsByClassName("btn");
+                for (let i = 0; i < btns.length; i++) {
+                    btns[i].addEventListener("click", function(){
+                    
+                        let active = document.querySelector('.btn.active');
+
+                        if (active) {
+                            active.classList.remove('active');
+                        }
+                        
+                        btns[i].classList.add('active');
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+body {
+    width: 100%;
+    background-color: #dddddd;
+}
+
+.block {
+    margin-bottom: 20px;
+}
+
+.block_row {
+    font-size: 0;
+}
+
+.block_cell {
+    display: inline-block;
+    vertical-align: top;
+    width: 80px;
+    height: 40px;
+    margin: 3px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px #a0a0a0;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+}
